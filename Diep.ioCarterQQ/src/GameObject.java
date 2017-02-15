@@ -1,35 +1,41 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
 
 public abstract class GameObject implements MovingObject {
 
+	public static final double MAX_SIZE = 200,
+							   MIN_SIZE = 50;
 	private double speed;// 0 - 10
 	private double direction, // degrees or radians
 		x, y, // >= 0
 	
-	
+		exp,
 		size, // 10 might be a good size   
 		health, // 0 - 100
 		power;// not sure about this...
 	private int level;//
 	private Color color;
+	
+	
 	public GameObject(double speed, double direction, double x, double y,double size, double health, double power, int level,Color color){
 		this.speed = speed;
 		this.direction = direction;
-		this.x=x;
-		this.y=y;
-		this.size=size;
+		this.setX(x);
+		this.setY(y);
+		this.setSize(size);
 		this.health=health;
-		this.power=power;
-		this.level=level;
+		this.setPower(power);
+		this.setLevel(level);
 		this.color=color;
+		GameMap.movers.add(this);
 	}
 	@Override
 	public void move() {
-		x+= speed*Math.cos(direction);
-		y+= speed+Math.sin(direction);
+		setX(getX() + speed*Math.cos(direction));
+		setY(getY() + (speed+Math.sin(direction)));
 		
 		checkOffScreen();
 		// maybe "push" back onto the screen change direction if
@@ -43,16 +49,52 @@ public abstract class GameObject implements MovingObject {
 		this.health = health;
 	}
 	public void terminate(){
-		
+		this.health = 0;
 	}
 	
 	public abstract void checkOffScreen();
 	
-	
+	public abstract void draw(Graphics g);
 	@Override
 	public Rectangle getBoundingRect() {
 		
-		return new Rectangle((int)x,(int)y,(int)size,(int)size);
+		return new Rectangle((int)getX(),(int)getY(),(int)getSize(),(int)getSize());
+	}
+	public double getExp() {
+		return exp;
+	}
+	public void setExp(double exp) {
+		this.exp = exp;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public double getPower() {
+		return power;
+	}
+	public void setPower(double power) {
+		this.power = power;
+	}
+	public double getX() {
+		return x;
+	}
+	public void setX(double x) {
+		this.x = x;
+	}
+	public double getY() {
+		return y;
+	}
+	public void setY(double y) {
+		this.y = y;
+	}
+	public double getSize() {
+		return size;
+	}
+	public void setSize(double size) {
+		this.size = size;
 	}
 
 }

@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.swing.JFrame;
 public class MovingObjectsGameLauncher {
 
 	public static void main(String[] args) {
+		Graphics g;
 		JFrame gameFrame = new JFrame();
 		Map<String,String> environMap= System.getenv();
 		System.out.println(environMap.keySet());
@@ -19,5 +21,6 @@ public class MovingObjectsGameLauncher {
 		gameFrame.setVisible(true);
 		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);
 	}
+	
 
 }
