@@ -20,14 +20,13 @@ public abstract class GameMap {
         movers.add(go);
     }
     public void removeGameObject(GameObject go){
-        int x = 0;
-        for(MovingObject k: movers){
-            if(k.equals(go)){
+        for(int y = 0; y<movers.size(); y++){
+            if(movers.get(y).equals(go)){
                 break;
             }
-            x++;
+            y++
         }
-        movers.remove(x);
+        movers.remove(y);
     }
     
     
