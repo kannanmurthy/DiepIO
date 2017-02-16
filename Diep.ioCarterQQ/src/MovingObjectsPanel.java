@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import javax.swing.*;
-
+//changes
 
 public class MovingObjectsPanel extends JPanel {
 
 	Dimension defaultDim = new Dimension();// = new Dimension(800,600);
 	GameMap gm;// = new DiepIOMap();
-	//GameBoard board= new GameBoard();    
+	//GameBoard board= new GameBoard();
 	public MovingObjectsPanel() {
 		new Dimension(800,600);
 	}
