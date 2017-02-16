@@ -53,6 +53,31 @@ public class MovingObjectsPanel extends JPanel {
 		});
 		this.requestFocusInWindow();        
 	}
+	
+	import javax.swing.Timer;// this timer is best with Swing Components
+
+private Timer t;// belongs to the class
+
+
+public MovingObjectsPanel(Dimension dim) {
+	defaultDim = dim;
+	this.setPreferredSize(defaultDim);
+	makeGameMap();
+	t.start();// start the timer which starts the "ticking"
+}
+private void makeGameMap() {
+	gm = new DiepIOMap(this.defaultDim);// let the map know what dim is
+	t = new Timer(10, new ActionListener() {// fires off every 10 ms
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			gm.tick();// I tell the GameMap to tick... do what
+				// you do every time the clock goes off.
+			repaint();// naturally, we want to see the new view
+		}
+			
+	});// this semicolon is here because it is the end of the new Timer construction...
+}
+	
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
