@@ -16,8 +16,7 @@ public class MovingObjectsGameLauncher {
 		
 		Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 		MovingObjectsPanel mop = new MovingObjectsPanel(d);
-		gameFrame.add(mop); //hi
-
+		gameFrame.add(mop);
 		gameFrame.pack();
 		gameFrame.setVisible(true);
 		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);

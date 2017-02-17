@@ -15,8 +15,7 @@ public void checkOffScreen() {
 
 }
 public void shoot() {
-    //fire away
-  //Bullet.hit();
+	new Bullet(this.getSpeed()+10, this.getDirection(), this.getPower(), this.getX(),this.getY());
 }
 @Override
 public void move() {
@@ -32,8 +31,9 @@ public void levelUp() {
 
 
 public void draw(Graphics g) {
-	g.setColor(new Color(250,0,0));
-   g.fillRect(10,10,50,50);
+	g.setColor(new Color(150,0,250));
+   g.fillRect((int) this.getX(),(int) this.getY(),(int)this.getSize()*2,(int)this.getSize()/3*2);
+   g.fillOval((int) this.getX(),(int) (this.getY()-this.getSize()/2),(int) this.getSize()/2*3,(int) this.getSize()/2*3);
    
 
 

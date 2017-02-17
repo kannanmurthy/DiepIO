@@ -19,7 +19,7 @@ public abstract class GameMap {
     public void addGameObject(GameObject go) {
         movers.add(go);
     }
-    public void removeGameObject(GameObject go){
+    public static void removeGameObject(GameObject go){
         int x = 0;
         for(MovingObject k: movers){
             if(k.equals(go)){

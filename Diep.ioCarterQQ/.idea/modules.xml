@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      System.out.Println(“im a dumbass”);
-      <module fileurl="file://$PROJECT_DIR$/Diep.ioCarterQQ.iml" filepath="$PROJECT_DIR$/Diep.ioCarterQQ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DiepIO.iml" filepath="$PROJECT_DIR$/DiepIO.iml" />
     </modules>
   </component>
 </project>

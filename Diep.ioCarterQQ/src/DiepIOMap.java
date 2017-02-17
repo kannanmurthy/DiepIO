@@ -19,7 +19,12 @@ public class DiepIOMap extends GameMap {
 	}
 	public  void addShootableFarms(){
 		for(int x = 0; x<200/* farm count */; x++){
-			addFarm(new Square(Math.random()*900+10,Math.random()*700+10,  20));
+			addFarm(new ShootableFarm(Math.random()*1400+10,Math.random()*850+10, 10.0, (double)20));
+		}
+	}
+	private void move(){
+		for(int x = 0; x<movers.size(); x++){
+			movers.get(x).move();
 		}
 	}
 	private void addTank(Tank t) {

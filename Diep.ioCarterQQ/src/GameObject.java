@@ -49,7 +49,7 @@ public abstract class GameObject implements MovingObject {
 		this.health = health;
 	}
 	public void terminate(){
-		this.health = 0;
+		GameMap.removeGameObject(this);
 	}
 	
 	public abstract void checkOffScreen();
@@ -95,6 +95,18 @@ public abstract class GameObject implements MovingObject {
 	}
 	public void setSize(double size) {
 		this.size = size;
+	}
+	public double getDirection(){
+		return direction;
+	}
+	public void setDirection(double dir){
+		direction = dir;
+	}
+	public double getSpeed(){
+		return speed;
+	}
+	public void setSpeed(double sped){
+		speed = sped;
 	}
 
 }
