@@ -9,4 +9,3 @@ public interface MovingObject {
 	Rectangle getBoundingRect();
 	void draw(Graphics g);
 }
-

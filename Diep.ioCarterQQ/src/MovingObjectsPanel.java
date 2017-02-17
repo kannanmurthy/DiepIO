@@ -1,20 +1,29 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
 
-import javax.swing.*;
-//changes
+import javax.swing.AbstractAction;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+
 
 public class MovingObjectsPanel extends JPanel {
 
-	Dimension defaultDim = new Dimension();// = new Dimension(800,600);
+	final Dimension defaultDim;// = new Dimension(800,600);
 	GameMap gm;// = new DiepIOMap();
-	//GameBoard board= new GameBoard();
+	//GameBoard board= new GameBoard();    
 	public MovingObjectsPanel() {
-		new Dimension(800,600);
+		this( new Dimension(800,600));
 	}
+	public MovingObjectsPanel(Dimension dim) {
+		defaultDim = dim;
+		this.setPreferredSize(defaultDim);
+		makeGameMap();
+	}
+	private void makeGameMap() {
+		gm = new DiepIOMap();
+	}
+
 	private void setUpKeyMappings() {
 		// maps keys with actions...
 		//  The code below maps a KeyStroke to an action to be performed
@@ -45,7 +54,7 @@ public class MovingObjectsPanel extends JPanel {
 		this.requestFocusInWindow();        
 	}
 	
-	// this timer is best with Swing Components
+	import javax.swing.Timer;// this timer is best with Swing Components
 
 private Timer t;// belongs to the class
 

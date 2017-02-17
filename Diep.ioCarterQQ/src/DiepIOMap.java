@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class DiepIOMap extends GameMap {
 	private List<ShootableFarm> shootables;
 	private List<Tank> tankList;
 	
-	public DiepIOMap(Dimension defaultDim) {
+	public DiepIOMap() {
 		tankList = new ArrayList();
 		shootables = new ArrayList();
 		addTank();
