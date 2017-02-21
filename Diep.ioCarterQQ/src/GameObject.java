@@ -48,6 +48,7 @@ public abstract class GameObject implements MovingObject {
 	public void setHealth(double health){
 		this.health = health;
 	}
+
 	public void terminate(){
 		GameMap.removeGameObject(this);
 	}

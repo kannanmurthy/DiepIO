@@ -7,6 +7,7 @@ import java.util.List;
 public class DiepIOMap extends GameMap {
 
 	private Tank tank1;
+	private List<Bullet> bullets;
 	private List<ShootableFarm> shootables;
 	private List<Tank> tankList;
 	
@@ -18,8 +19,8 @@ public class DiepIOMap extends GameMap {
 
 	}
 	public  void addShootableFarms(){
-		for(int x = 0; x<200/* farm count */; x++){
-			addFarm(new ShootableFarm(Math.random()*1400+10,Math.random()*850+10, 10.0, (double)20));
+		for(int x = 0; x<50/* farm count */; x++){
+			addFarm(new ShootableFarm(Math.random()*1400+10,Math.random()*850+10, 20.0, (double)20));
 		}
 	}
 	private void move(){
@@ -29,6 +30,19 @@ public class DiepIOMap extends GameMap {
 	}
 	private void addTank(Tank t) {
         addGameObject(t);
+	}
+
+	private void checkBulletCollisions(){
+		for(int x = 0; x<bullets.size(); x++){
+			int X = bullets.get(x).getX();
+			int Y = bullets.get(x).getY();
+			for(int y = 0; y<shootables.size(); y++){
+				if (X-shootables.get(y).getSize() > shootables.get(y).getX()+shootables.get(y).getSize() && X+shootables.get(y).getSize() < shootables.get(y).getX()-shootables.get(y).getSize() && Y+shootables.get(y).getSize() < shootables.get(y).getY()-shootables.get(y).getSize() && Y+shootables.get(y).getSize() > shootables.get(y).getY()-shootables.get(y).getSize()){
+					bullets.get(x).terminate();
+					shootables.get(y).terminate();
+				}
+			}
+		}
 	}
 
 	private void addTank() {

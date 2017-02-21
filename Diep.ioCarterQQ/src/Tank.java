@@ -5,7 +5,7 @@ public class Tank extends GameObject implements MovingObject {
 private double exp = 0;
 
 public Tank(double x, double y, Color color) {
-   super(0, Math.PI/2, x, y, 20, 100, 1, 1, color);
+   super(0, Math.PI/2, x, y, 30, 100, 1, 1, color);
 }
 
 @Override
