@@ -7,7 +7,7 @@ import java.util.List;
 public class DiepIOMap extends GameMap {
 
 	private Tank tank1;
-	private List<Bullet> bullets;
+	static List<Bullet> bullets;
 	private List<ShootableFarm> shootables;
 	private List<Tank> tankList;
 	
@@ -34,8 +34,8 @@ public class DiepIOMap extends GameMap {
 
 	private void checkBulletCollisions(){
 		for(int x = 0; x<bullets.size(); x++){
-			int X = bullets.get(x).getX();
-			int Y = bullets.get(x).getY();
+			int X = (int) bullets.get(x).getX();
+			int Y = (int) bullets.get(x).getY();
 			for(int y = 0; y<shootables.size(); y++){
 				if (X-shootables.get(y).getSize() > shootables.get(y).getX()+shootables.get(y).getSize() && X+shootables.get(y).getSize() < shootables.get(y).getX()-shootables.get(y).getSize() && Y+shootables.get(y).getSize() < shootables.get(y).getY()-shootables.get(y).getSize() && Y+shootables.get(y).getSize() > shootables.get(y).getY()-shootables.get(y).getSize()){
 					bullets.get(x).terminate();

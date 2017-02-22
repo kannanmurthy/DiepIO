@@ -25,8 +25,8 @@ public class Bullet extends GameObject {
 	public void draw(Graphics g, int x, int y){
 
 	}
-	pbulic void terminate(){
-		DoepIOMap.bullets.remove(this);
+	public void terminate(){
+		DiepIOMap.bullets.remove(this);
 		super.terminate();
 	}
 	@Override
