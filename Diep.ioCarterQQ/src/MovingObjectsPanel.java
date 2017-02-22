@@ -1,7 +1,9 @@
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.Timer;// this timer is best with Swing Components
 import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
@@ -15,15 +17,43 @@ public class MovingObjectsPanel extends JPanel {
 	public MovingObjectsPanel() {
 		this( new Dimension(800,600));
 	}
-	public MovingObjectsPanel(Dimension dim) {
-		defaultDim = dim;
-		this.setPreferredSize(defaultDim);
-		makeGameMap();
-	}
-	private void makeGameMap() {
-		gm = new DiepIOMap();
-	}
+//	public MovingObjectsPanel(Dimension dim) {
+//		defaultDim = dim;
+//		this.setPreferredSize(defaultDim);
+//		makeGameMap();
+//	}
+//	private void makeGameMap() {
+//		gm = new DiepIOMap();
+//	}
 
+////here is my code that creates the animation:  This code goes in the 
+////Panel class
+
+private Timer t;// belongs to the class
+
+
+public MovingObjectsPanel(Dimension dim) {
+	defaultDim = dim;
+	this.setPreferredSize(defaultDim);
+	makeGameMap();
+	t.start();// start the timer which starts the "ticking"
+}
+
+private void makeGameMap() {
+	gm = new DiepIOMap(this.defaultDim);// let the map know what dim is
+	t = new Timer(10, new ActionListener() {// fires off every 10 ms
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			gm.tick();// I tell the GameMap to tick... do what
+				// you do every time the clock goes off.
+			repaint();// naturally, we want to see the new view
+		}
+			
+	});// this semicolon is here because it is the end of the new Timer construction...
+}
+	
+	
+	
 	private void setUpKeyMappings() {
 		// maps keys with actions...
 		//  The code below maps a KeyStroke to an action to be performed
@@ -42,6 +72,24 @@ public class MovingObjectsPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				  ((DiepIOMap) gm).shoot();
+				//panel just tells what the frick got pressed
+				//panel tells tank that it needs to shoot
+				//tank returns a list of bullets
+				//add bullets to movingObject list
+				//each tick, panel moves every object in movingObject
+
+			}
+		});
+		
+		this.getInputMap().put(KeyStroke.getKeyStroke("W"), "Up");
+		
+		this.getActionMap().put("Up",new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				((DiepIOMap) gm).move();
+				// TODO Auto-generated method stub
 				// gm.shoot();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
@@ -51,6 +99,42 @@ public class MovingObjectsPanel extends JPanel {
 
 			}
 		});
+		
+		this.getInputMap().put(KeyStroke.getKeyStroke("D"), "RotateRight");
+		
+		this.getActionMap().put("RotateRight",new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				((DiepIOMap) gm).rotateRight();
+				//panel just tells what the frick got pressed
+				//panel tells tank that it needs to shoot
+				//tank returns a list of bullets
+				//add bullets to movingObject list
+				//each tick, panel moves every object in movingObject
+
+			}
+		});
+		
+		this.getInputMap().put(KeyStroke.getKeyStroke("A"), "RotateLeft");
+		
+		this.getActionMap().put("RotateLeft",new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				 ((DiepIOMap) gm).rotateLeft();
+				//panel just tells what the frick got pressed
+				//panel tells tank that it needs to shoot
+				//tank returns a list of bullets
+				//add bullets to movingObject list
+				//each tick, panel moves every object in movingObject
+
+			}
+		});
+		
+
 		this.requestFocusInWindow();        
 	}
 
