@@ -9,8 +9,8 @@ public class DiepIOMap extends GameMap {
 
 	public static List<Bullet> bullets;
 
-	private List<ShootableFarm> shootables;
-	private List<Tank> tankList;
+	public static List<ShootableFarm> shootables;
+	public static List<Tank> tankList;
 	
 	public DiepIOMap(Dimension defaultDim) {
 		tankList = new ArrayList();
@@ -21,9 +21,10 @@ public class DiepIOMap extends GameMap {
 	}
 	public  void addShootableFarms(){
 		for(int x = 0; x<50/* farm count */; x++){
-			addFarm(new ShootableFarm(Math.random()*1400+10,Math.random()*850+10, 20.0, (double)20));
+			new ShootableFarm(Math.random()*1450+40,Math.random()*805+25, 20.0, 20.0);
 		}
 	}
+
 	public void move(){
 		for(int x = 0; x<movers.size(); x++){
 			movers.get(x).move();
@@ -39,14 +40,34 @@ public class DiepIOMap extends GameMap {
 			int Y = (int) bullets.get(x).getY();
 
 			for(int y = 0; y<shootables.size(); y++){
-				if (X-shootables.get(y).getSize() > shootables.get(y).getX()+shootables.get(y).getSize() && X+shootables.get(y).getSize() < shootables.get(y).getX()-shootables.get(y).getSize() && Y+shootables.get(y).getSize() < shootables.get(y).getY()-shootables.get(y).getSize() && Y+shootables.get(y).getSize() > shootables.get(y).getY()-shootables.get(y).getSize()){
+				if (X-shootables.get(y).getSize() > shootables.get(y).getX()+shootables.get(y).getSize() 
+					&& X+shootables.get(y).getSize() < shootables.get(y).getX()-shootables.get(y).getSize() 
+					&& Y+shootables.get(y).getSize() < shootables.get(y).getY()-shootables.get(y).getSize() 
+					&& Y+shootables.get(y).getSize() > shootables.get(y).getY()-shootables.get(y).getSize()){
+						shootables.get(y).setHealth(shootables.get(y).getHealth()-bullets.get(x).getPower());
+						bullets.get(x).terminate();
+							if(shootables.get(y).getHealth()<=0){
+								shootables.get(y).terminate();
+							}
+					
+					}
+				}
+			for(int y = 0; y<tankList.size(); y++){
+				if (X-tankList.get(y).getSize() > tankList.get(y).getX()+tankList.get(y).getSize() 
+					&& X+tankList.get(y).getSize() < tankList.get(y).getX()-tankList.get(y).getSize()
+					&& Y+tankList.get(y).getSize() < tankList.get(y).getY()-tankList.get(y).getSize() 
+					&& Y+tankList.get(y).getSize() > tankList.get(y).getY()-tankList.get(y).getSize()){
+					tankList.get(y).setHealth(tankList.get(y).getHealth()-bullets.get(x).getPower());
 					bullets.get(x).terminate();
-					shootables.get(y).terminate();
+					if(tankList.get(y).getHealth()<=0){
+						tankList.get(y).terminate();
+					}
+					
 				}
 			}
 		}
 	}
-
+	
 	private void addTank() {
 		tank1 =  new Tank(100,100, Color.black);
         addGameObject(tank1);       
@@ -56,10 +77,6 @@ public class DiepIOMap extends GameMap {
 	@Override
 	public void openBackgroundImage() {
 		// TODO Auto-generated method stub
-
-	}
-	public void addFarm(ShootableFarm farm){
-		shootables.add(farm);
 
 	}
 

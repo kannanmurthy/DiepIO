@@ -11,8 +11,10 @@ public Tank(double x, double y, Color color) {
 @Override
 public void checkOffScreen() {
    // TODO Auto-generated method stub
-
-
+}
+public void terminate(){
+	DiepIOMap.tankList.remove(this);
+	super.terminate();
 }
 public void shoot() {
 	new Bullet(this.getSpeed()+10, this.getDirection(), this.getPower(), this.getX(),this.getY());
@@ -42,7 +44,7 @@ public void draw(Graphics g) {
 	}
 	else if(this.getDirection()%(Math.PI*2) == 0){
 		   g.fillRect((int) this.getX()+12,(int) this.getY(),(int)this.getSize()*2,(int)this.getSize()/3*2);
-		   g.fillOval((int) this.getX(),(int) (this.getY()-this.getSize()/2),(int) this.getSize()/2*3,(int) this.getSize()/2*3);
+		   g.fillOval((int) this.getX(),(int) (this.getY()-this.getSize()/2)+1,(int) this.getSize()/2*3,(int) this.getSize()/2*3);
 	}
 	else if(this.getDirection()%(Math.PI*2) == Math.PI*3/2){
 		g.fillOval((int) this.getX(),(int) (this.getY()-this.getSize()/2),(int) this.getSize()/2*3,(int) this.getSize()/2*3);

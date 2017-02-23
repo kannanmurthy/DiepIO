@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,8 @@ import javax.swing.KeyStroke;
 public class MovingObjectsPanel extends JPanel {
 
 	final Dimension defaultDim;// = new Dimension(800,600);
-	GameMap gm;// = new DiepIOMap();
+	GameMap gm;
+	// = new DiepIOMap();
 	//GameBoard board= new GameBoard();    
 	public MovingObjectsPanel() {
 		this( new Dimension(800,600));
@@ -36,6 +38,7 @@ public MovingObjectsPanel(Dimension dim) {
 	defaultDim = dim;
 	this.setPreferredSize(defaultDim);
 	makeGameMap();
+	setUpKeyMappings();
 	t.start();// start the timer which starts the "ticking"
 }
 
@@ -44,7 +47,7 @@ private void makeGameMap() {
 	t = new Timer(10, new ActionListener() {// fires off every 10 ms
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//gm.tick();// I tell the GameMap to tick... do what
+			gm.tick();// I tell the GameMap to tick... do what
 				// you do every time the clock goes off.
 			repaint();// naturally, we want to see the new view
 		}
@@ -52,7 +55,13 @@ private void makeGameMap() {
 	});// this semicolon is here because it is the end of the new Timer construction...
 }
 	
-	
+public void addFrame(Graphics g){
+	g.setColor(Color.black);
+	g.fillRect(20, 5, 2, 850);
+	g.fillRect(20, 5, 1500, 2);
+	g.fillRect(20, 850, 1500, 2);
+	g.fillRect(1500, 5, 2, 850);
+}
 	
 	private void setUpKeyMappings() {
 		// maps keys with actions...
@@ -90,7 +99,7 @@ private void makeGameMap() {
 			public void actionPerformed(ActionEvent e) {
 				((DiepIOMap) gm).move();
 				// TODO Auto-generated method stub
-				// gm.shoot();
+				 gm.shoot();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
@@ -141,6 +150,6 @@ private void makeGameMap() {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		gm.draw(g);
-
+		addFrame(g);
 	}
 }

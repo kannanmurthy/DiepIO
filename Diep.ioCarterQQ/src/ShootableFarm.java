@@ -7,8 +7,7 @@ public class  ShootableFarm extends GameObject {
 	
 	public ShootableFarm(double x, double y,double size, double health){
 		super(0, 0, x, y, size, health, 0,0, new Color(250,0,0));
-		
-		
+		DiepIOMap.shootables.add(this);
 	}
 	
 	public double takeHit(int decreaseAmount){
@@ -18,7 +17,10 @@ public class  ShootableFarm extends GameObject {
 		}
 		return 0;
 	}
-	
+	public void terminate(){
+		DiepIOMap.shootables.remove(this);
+		super.terminate();
+	}
 	public void draw(Graphics g) {
 		g.setColor( new Color((int)(Math.random()*250), (int)(Math.random()*250), (int)(Math.random()*250)));
 		g.fillOval((int)this.getX(),(int)this.getY(), (int)getSize(),(int)getSize());

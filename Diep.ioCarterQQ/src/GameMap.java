@@ -20,13 +20,11 @@ public abstract class GameMap {
         movers.add(go);
     }
     public static void removeGameObject(GameObject go){
-        int x = 0;
-        for(MovingObject k: movers){
-            if(k.equals(go)){
-                break;
+    	int x = 0;
+            for(x=0; x<movers.size(); x++){
+            	if(movers.get(x)==go)
+            		break;
             }
-            x++;
-        }
         movers.remove(x);
     }
     
@@ -38,8 +36,14 @@ public abstract class GameMap {
     }
 
 	public void draw(Graphics g) {
-		for(MovingObject go:movers){
-			go.draw(g);
+		for(int x = 0; x<movers.size(); x++){
+			movers.get(x).draw(g);
+		}
+	}
+
+	public void tick() {
+		for(int x = 0; x<movers.size(); x++){
+			movers.get(x).move();
 		}
 	}     
 }
