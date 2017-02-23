@@ -44,7 +44,7 @@ private void makeGameMap() {
 	t = new Timer(10, new ActionListener() {// fires off every 10 ms
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			gm.tick();// I tell the GameMap to tick... do what
+			//gm.tick();// I tell the GameMap to tick... do what
 				// you do every time the clock goes off.
 			repaint();// naturally, we want to see the new view
 		}
@@ -107,7 +107,7 @@ private void makeGameMap() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				((DiepIOMap) gm).rotateRight();
+				//((DiepIOMap) gm).rotateRight();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
@@ -124,7 +124,7 @@ private void makeGameMap() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				 ((DiepIOMap) gm).rotateLeft();
+				 //((DiepIOMap) gm).rotateLeft();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
