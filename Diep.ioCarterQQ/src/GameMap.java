@@ -31,19 +31,18 @@ public abstract class GameMap {
     
     public abstract void openBackgroundImage();
 
-    public void shoot() {
-
-    }
 
 	public void draw(Graphics g) {
 		for(int x = 0; x<movers.size(); x++){
 			movers.get(x).draw(g);
 		}
 	}
-
-	public void tick() {
+	void checkBulletCollisions(){}
+		public void tick() {
 		for(int x = 0; x<movers.size(); x++){
 			movers.get(x).move();
 		}
+		checkBulletCollisions();
+		DiepIOMap.tankList.get(0).setSpeed(DiepIOMap.tankList.get(0).getSpeed()*74/75);
 	}     
 }

@@ -48,7 +48,7 @@ private void makeGameMap() {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			gm.tick();// I tell the GameMap to tick... do what
-				// you do every time the clock goes off.
+					// you do every time the clock goes off.
 			repaint();// naturally, we want to see the new view
 		}
 			
@@ -57,10 +57,10 @@ private void makeGameMap() {
 	
 public void addFrame(Graphics g){
 	g.setColor(Color.black);
-	g.fillRect(20, 5, 2, 850);
-	g.fillRect(20, 5, 1500, 2);
-	g.fillRect(20, 850, 1500, 2);
-	g.fillRect(1500, 5, 2, 850);
+	g.fillRect(20, 2, 2, 853);
+	g.fillRect(15, 5, 1490, 2);
+	g.fillRect(15, 850, 1490, 2);
+	g.fillRect(1500, 2, 2, 853);
 }
 	
 	private void setUpKeyMappings() {
@@ -81,7 +81,7 @@ public void addFrame(Graphics g){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				  ((DiepIOMap) gm).shoot();
+				DiepIOMap.tankList.get(0).shoot();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
@@ -97,9 +97,8 @@ public void addFrame(Graphics g){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				((DiepIOMap) gm).move();
+				DiepIOMap.tankList.get(0).accelerate();
 				// TODO Auto-generated method stub
-				 gm.shoot();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
@@ -116,7 +115,7 @@ public void addFrame(Graphics g){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//((DiepIOMap) gm).rotateRight();
+				DiepIOMap.tankList.get(0).rotateRight();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
@@ -133,7 +132,7 @@ public void addFrame(Graphics g){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				 //((DiepIOMap) gm).rotateLeft();
+				DiepIOMap.tankList.get(0).rotateLeft();
 				//panel just tells what the frick got pressed
 				//panel tells tank that it needs to shoot
 				//tank returns a list of bullets
@@ -151,5 +150,6 @@ public void addFrame(Graphics g){
 		super.paintComponent(g);
 		gm.draw(g);
 		addFrame(g);
+		
 	}
 }

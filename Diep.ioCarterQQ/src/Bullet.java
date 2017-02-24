@@ -31,8 +31,8 @@ public class Bullet extends GameObject {
 	}
 	@Override
 	public void draw(Graphics g) {
-
-		g.drawOval((int)getX(), (int)getY(), CONSTANT_SIZE, CONSTANT_SIZE);
+		g.setColor(new Color((int)(Math.random()*250), (int)(Math.random()*250), (int)(Math.random()*250)));
+		g.fillOval((int)getX(), (int)getY(), CONSTANT_SIZE, CONSTANT_SIZE);
 	}
 
 }

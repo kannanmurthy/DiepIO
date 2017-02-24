@@ -13,8 +13,9 @@ public class DiepIOMap extends GameMap {
 	public static List<Tank> tankList;
 	
 	public DiepIOMap(Dimension defaultDim) {
-		tankList = new ArrayList();
-		shootables = new ArrayList();
+		tankList = new ArrayList<Tank>();
+		shootables = new ArrayList<ShootableFarm>();
+		bullets = new ArrayList<Bullet>();
 		addTank();
 		this.addShootableFarms();
 
@@ -30,11 +31,11 @@ public class DiepIOMap extends GameMap {
 			movers.get(x).move();
 		}
 	}
-	private void addTank(Tank t) {
+	public void addTank(Tank t) {
         addGameObject(t);
 	}
 
-	private void checkBulletCollisions(){
+	public void checkBulletCollisions(){
 		for(int x = 0; x<bullets.size(); x++){
 			int X = (int) bullets.get(x).getX();
 			int Y = (int) bullets.get(x).getY();
@@ -61,6 +62,9 @@ public class DiepIOMap extends GameMap {
 					bullets.get(x).terminate();
 					if(tankList.get(y).getHealth()<=0){
 						tankList.get(y).terminate();
+						if(y==0){
+							//end game
+						}
 					}
 					
 				}

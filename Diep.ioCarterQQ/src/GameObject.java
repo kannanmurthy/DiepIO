@@ -35,7 +35,7 @@ public abstract class GameObject implements MovingObject {
 	@Override
 	public void move() {
 		setX(getX() + speed*Math.cos(direction));
-		setY(getY() + (speed+Math.sin(direction)));
+		setY(getY() + (speed*Math.sin(direction)));
 		
 		checkOffScreen();
 		// maybe "push" back onto the screen change direction if
